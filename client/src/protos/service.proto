@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package proto;
+
+// CoreServices = serviço base do cluster de microserviços.
+// Contém exemplos dos 4 tipos de RPC do gRPC.
+service CoreServices {
+
+  // 1️⃣ UNARY RPC
+  // Uma requisição -> Uma resposta.
+  // Usado para healthcheck, login, consultas simples e controle.
+  rpc Ping(PingRequest) returns (PingReply);
+
+  // 2️⃣ SERVER STREAMING RPC
+  // Uma requisição -> Fluxo contínuo de respostas.
+  // Usado para progresso, monitoramento, logs, vídeo, resultados contínuos.
+  rpc StreamNumbers(StreamRequest) returns (stream StreamReply);
+
+  // 3️⃣ CLIENT STREAMING RPC
+  // Fluxo de requisições -> Uma resposta final.
+  // Usado para upload pesado, envio de batches, treinamento ML.
+  rpc UploadNumbers(stream UploadRequest) returns (UploadResult);
+
+  // 4️⃣ BIDIRECTIONAL STREAMING RPC
+  // Fluxo contínuo de requisições <-> Fluxo contínuo de respostas.
+  // Usado para chat, inferência ML em tempo real, IoT, jogos, trading.
+  rpc Chat(stream ChatMessage) returns (stream ChatMessage);
+}
+
+/* ===== Messages ===== */
+
+// Mensagem de requisição para o Ping
+message PingRequest {
+  string name = 1; // Nome do cliente
+}
+
+// Resposta do Ping
+message PingReply {
+  string message = 1; // Mensagem de retorno
+}
+
+// Parâmetros do streaming de números
+message StreamRequest {
+  int32 max = 1; // Valor máximo a ser enviado pelo servidor
+}
+
+// Cada número enviado no streaming
+message StreamReply {
+  int32 value = 1; // Valor enviado
+}
+
+// Cada número enviado pelo cliente no upload streaming
+message UploadRequest {
+  int32 value = 1; // Número enviado
+}
+
+// Resultado final do upload
+message UploadResult {
+  int32 total = 1; // Soma de todos os valores enviados
+}
+
+// Mensagem do chat bidirecional
+message ChatMessage {
+  string text = 1; // Texto da mensagem
+}

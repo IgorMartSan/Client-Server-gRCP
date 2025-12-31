@@ -1,0 +1,63 @@
+
+services:
+
+  client_grcp:
+      restart: always
+      build:
+        context: ./client
+        dockerfile: Dockerfile
+      volumes:
+        - ${GLOBAL_PATH}/logs:/system_log
+      environment:
+
+        CONTAINER_NAME: client_grcp
+        TZ: America/Sao_Paulo
+
+      networks:
+        - network_system_grcp
+
+
+  server_grcp:
+      restart: always
+      build:
+        context: ./server
+        dockerfile: Dockerfile
+      volumes:
+        - ${GLOBAL_PATH}/logs:/system_log
+      ports:
+        - 50051:50051
+      environment:
+        CONTAINER_NAME: server_grcp
+        TZ: America/Sao_Paulo
+
+      networks:
+        - network_system_grcp
+
+
+  server_grcp_gpu:
+      restart: always
+      build:
+        context: ./server_with_gpu
+        dockerfile: Dockerfile
+      volumes:
+        - ${GLOBAL_PATH}/logs:/system_log
+      ports:
+        - 50052:50051
+      environment:
+        CONTAINER_NAME: server_grcp
+        TZ: America/Sao_Paulo
+
+      networks:
+        - network_system_grcp
+      deploy:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                capabilities: [gpu]
+
+ 
+networks:
+  network_system_grcp:
+    driver: bridge
+    name: network_system_grcp
