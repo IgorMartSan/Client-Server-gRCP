@@ -16,7 +16,6 @@ def decode_image(image_bytes: bytes) -> np.ndarray:
         raise ValueError("Imagem inválida. Envie JPEG/PNG válido.")
     return img
 
-
 def dict_defectinfo_to_pb2(d: dict) -> pb2.DefectInfo:
     return pb2.DefectInfo(
         name=str(d["name"]),
@@ -33,7 +32,6 @@ def dict_defectinfo_to_pb2(d: dict) -> pb2.DefectInfo:
         ),
     )
 
-
 def dict_bbox_to_pb2(b: dict) -> pb2.BBox:
     return pb2.BBox(
         x=float(b["x"]),
@@ -44,7 +42,6 @@ def dict_bbox_to_pb2(b: dict) -> pb2.BBox:
         class_id=int(b.get("class_id", -1)),
         confidence=float(b.get("confidence", 0.0)),
     )
-
 
 class InferenceServicer(pb2_grpc.InferenceServiceServicer):
     def __init__(self):
@@ -100,20 +97,16 @@ class InferenceServicer(pb2_grpc.InferenceServiceServicer):
             context.set_details(str(e))
             return pb2.InferResponse(model_name=self.model_name, defect_list=self.defect_list_pb2, error=str(e))
 
-
-
-
-
 def main():
     port = int(os.getenv("GRPC_PORT", "50051"))
     max_workers = int(os.getenv("GRPC_MAX_WORKERS", "8"))
 
     server = grpc.server(
         futures.ThreadPoolExecutor(max_workers=max_workers),
-        # options=[
-        #     ("grpc.max_send_message_length", 64 * 1024 * 1024),
-        #     ("grpc.max_receive_message_length", 64 * 1024 * 1024),
-        # ],
+        options=[
+            ("grpc.max_send_message_length", 64 * 1024 * 1024),
+            ("grpc.max_receive_message_length", 64 * 1024 * 1024),
+        ],
     )
 
     pb2_grpc.add_InferenceServiceServicer_to_server(InferenceServicer(), server)
