@@ -46,6 +46,9 @@ services:
       environment:
         CONTAINER_NAME: server_grcp
         TZ: America/Sao_Paulo
+        MODEL_NAME: "yolo_detect_1_345"
+        MODEL_PATH: "/code/src/models/main_defect.pt"
+
 
       networks:
         - network_system_grcp

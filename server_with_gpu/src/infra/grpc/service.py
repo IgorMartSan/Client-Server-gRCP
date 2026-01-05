@@ -1,6 +1,6 @@
 import time
 
-from proto import service_pb2, service_pb2_grpc
+from protos import service_pb2, service_pb2_grpc
 
 
 class CoreService(service_pb2_grpc.CoreServicesServicer):

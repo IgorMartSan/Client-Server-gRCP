@@ -2,7 +2,7 @@ from concurrent import futures
 import grpc
 
 from infra.grpc.service import CoreService
-from proto import service_pb2_grpc
+from protos import service_pb2_grpc
 
 
 def start_grpc_server():
