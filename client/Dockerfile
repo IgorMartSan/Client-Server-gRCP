@@ -13,4 +13,4 @@ COPY . .
 # Se o main.py fica em /app/app, ajuste o WORKDIR:
 WORKDIR /code/src
 
-CMD ["python", "main.py"]
+CMD ["python", "loop_test_gpu.py"]
