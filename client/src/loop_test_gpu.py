@@ -52,7 +52,6 @@ def load_image_bytes() -> bytes:
         raise RuntimeError("Falha ao codificar JPEG.")
     return buf.tobytes()
 
-
 def make_channel(target: str) -> grpc.Channel:
     return grpc.insecure_channel(
         target,
@@ -111,8 +110,20 @@ def safe_call(fn, target_name: str) -> None:
 def main():
     image_bytes = load_image_bytes()
 
-    ch1 = make_channel(TARGET_1)
-    ch2 = make_channel(TARGET_2)
+    ch1 = grpc.insecure_channel(
+        TARGET_1,
+        options=[
+            ("grpc.max_send_message_length", MAX_MSG),
+            ("grpc.max_receive_message_length", MAX_MSG),
+        ],)
+
+    ch2 = grpc.insecure_channel(
+        TARGET_2,
+        options=[
+            ("grpc.max_send_message_length", MAX_MSG),
+            ("grpc.max_receive_message_length", MAX_MSG),
+        ],)
+   
 
     stub1 = pb2_grpc.InferenceServiceStub(ch1)
     stub2 = pb2_grpc.InferenceServiceStub(ch2)
