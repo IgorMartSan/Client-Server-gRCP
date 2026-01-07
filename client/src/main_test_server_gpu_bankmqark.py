@@ -27,13 +27,11 @@ INCLUDE_SEG = False
 MAX_MSG = 64 * 1024 * 1024
 # ==================
 
-
 def percentile(sorted_vals, p: float) -> float:
     if not sorted_vals:
         return 0.0
     idx = int(p * (len(sorted_vals) - 1))
     return sorted_vals[idx]
-
 
 def load_image_as_jpeg_bytes(image_dir: str, image_name: str, quality: int = 90) -> bytes:
     image_path = os.path.join(image_dir, image_name)

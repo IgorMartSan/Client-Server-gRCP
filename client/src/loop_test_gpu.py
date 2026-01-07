@@ -62,7 +62,7 @@ def make_channel(target: str) -> grpc.Channel:
     )
 
 
-def call_infer(stub: pb2_grpc.InferenceServiceStub, image_bytes: bytes, target_name: str) -> None:
+def call_infer(stub: pb2_grpc.InferenceMethodsStub, image_bytes: bytes, target_name: str) -> None:
     req = pb2.InferRequest(
         image_bytes=image_bytes,
         confidence_threshold=float(CONFIDENCE),
@@ -125,8 +125,8 @@ def main():
         ],)
    
 
-    stub1 = pb2_grpc.InferenceServiceStub(ch1)
-    stub2 = pb2_grpc.InferenceServiceStub(ch2)
+    stub1 = pb2_grpc.InferenceMethodsStub(ch1)
+    stub2 = pb2_grpc.InferenceMethodsStub(ch2)
 
     logger.info("Dual targets: 1=%s | 2=%s", TARGET_1, TARGET_2)
     logger.info("Image: %s/%s | conf=%.2f bbox=%s seg=%s", IMAGE_DIR, IMAGE_NAME, CONFIDENCE, BBOX_FORMAT, INCLUDE_SEG)

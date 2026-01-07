@@ -25,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class InferenceServiceStub(object):
+class InferenceMethodsStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -35,13 +35,13 @@ class InferenceServiceStub(object):
             channel: A grpc.Channel.
         """
         self.Infer = channel.unary_unary(
-                '/model.inference.InferenceService/Infer',
+                '/model.inference.InferenceMethods/Infer',
                 request_serializer=protos_dot_inference__pb2.InferRequest.SerializeToString,
                 response_deserializer=protos_dot_inference__pb2.InferResponse.FromString,
                 _registered_method=True)
 
 
-class InferenceServiceServicer(object):
+class InferenceMethodsServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def Infer(self, request, context):
@@ -51,7 +51,7 @@ class InferenceServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_InferenceServiceServicer_to_server(servicer, server):
+def add_InferenceMethodsServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Infer': grpc.unary_unary_rpc_method_handler(
                     servicer.Infer,
@@ -60,13 +60,13 @@ def add_InferenceServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'model.inference.InferenceService', rpc_method_handlers)
+            'model.inference.InferenceMethods', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('model.inference.InferenceService', rpc_method_handlers)
+    server.add_registered_method_handlers('model.inference.InferenceMethods', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class InferenceService(object):
+class InferenceMethods(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -83,7 +83,7 @@ class InferenceService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/model.inference.InferenceService/Infer',
+            '/model.inference.InferenceMethods/Infer',
             protos_dot_inference__pb2.InferRequest.SerializeToString,
             protos_dot_inference__pb2.InferResponse.FromString,
             options,
