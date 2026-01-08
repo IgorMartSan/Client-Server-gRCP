@@ -7,10 +7,8 @@ service InferenceMethods {
 }
 
 message InferRequest {
-  bytes image_bytes = 1;
-  float confidence_threshold = 2;
-  string bbox_format = 3;
-  bool include_segmentation = 4;
+  bytes image_bytes = 1;          // JPG/PNG
+  float confidence_threshold = 2; // ex: 0.10
 }
 
 message RGB {
@@ -27,6 +25,7 @@ message DefectInfo {
 }
 
 message BBox {
+  // Padrão único (Canvas-friendly): XYWH top-left em pixels
   float x = 1;
   float y = 2;
   float w = 3;
@@ -40,7 +39,12 @@ message BBox {
 message InferResponse {
   string model_name = 1;
   repeated BBox list_bbox = 2;
-  optional bytes img_segmentation = 3; // ausente em detecção
+
+  // Sempre presente: vazio (b"") quando não houver segmentação
+  bytes img_segmentation = 3;
+
   repeated DefectInfo defect_list = 4;
+
+  // "" quando OK
   string error = 5;
 }

@@ -42,7 +42,7 @@ services:
       volumes:
         - ${GLOBAL_PATH}/logs:/system_log
       ports:
-        - 50052:50051
+        - 50053:50051
       environment:
         CONTAINER_NAME: server_grcp
         TZ: America/Sao_Paulo

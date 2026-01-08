@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16protos/inference.proto\x12\x0fmodel.inference\"t\n\x0cInferRequest\x12\x13\n\x0bimage_bytes\x18\x01 \x01(\x0c\x12\x1c\n\x14\x63onfidence_threshold\x18\x02 \x01(\x02\x12\x13\n\x0b\x62\x62ox_format\x18\x03 \x01(\t\x12\x1c\n\x14include_segmentation\x18\x04 \x01(\x08\"&\n\x03RGB\x12\t\n\x01r\x18\x01 \x01(\r\x12\t\n\x01g\x18\x02 \x01(\r\x12\t\n\x01\x62\x18\x03 \x01(\r\"~\n\nDefectInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08\x63lass_id\x18\x02 \x01(\x05\x12&\n\x08ui_color\x18\x03 \x01(\x0b\x32\x14.model.inference.RGB\x12(\n\nmask_color\x18\x04 \x01(\x0b\x32\x14.model.inference.RGB\"g\n\x04\x42\x42ox\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01w\x18\x03 \x01(\x02\x12\t\n\x01h\x18\x04 \x01(\x02\x12\r\n\x05label\x18\x05 \x01(\t\x12\x10\n\x08\x63lass_id\x18\x06 \x01(\x05\x12\x12\n\nconfidence\x18\x07 \x01(\x02\"\xc2\x01\n\rInferResponse\x12\x12\n\nmodel_name\x18\x01 \x01(\t\x12(\n\tlist_bbox\x18\x02 \x03(\x0b\x32\x15.model.inference.BBox\x12\x1d\n\x10img_segmentation\x18\x03 \x01(\x0cH\x00\x88\x01\x01\x12\x30\n\x0b\x64\x65\x66\x65\x63t_list\x18\x04 \x03(\x0b\x32\x1b.model.inference.DefectInfo\x12\r\n\x05\x65rror\x18\x05 \x01(\tB\x13\n\x11_img_segmentation2Z\n\x10InferenceMethods\x12\x46\n\x05Infer\x12\x1d.model.inference.InferRequest\x1a\x1e.model.inference.InferResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16protos/inference.proto\x12\x0fmodel.inference\"A\n\x0cInferRequest\x12\x13\n\x0bimage_bytes\x18\x01 \x01(\x0c\x12\x1c\n\x14\x63onfidence_threshold\x18\x02 \x01(\x02\"&\n\x03RGB\x12\t\n\x01r\x18\x01 \x01(\r\x12\t\n\x01g\x18\x02 \x01(\r\x12\t\n\x01\x62\x18\x03 \x01(\r\"~\n\nDefectInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x10\n\x08\x63lass_id\x18\x02 \x01(\x05\x12&\n\x08ui_color\x18\x03 \x01(\x0b\x32\x14.model.inference.RGB\x12(\n\nmask_color\x18\x04 \x01(\x0b\x32\x14.model.inference.RGB\"g\n\x04\x42\x42ox\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01w\x18\x03 \x01(\x02\x12\t\n\x01h\x18\x04 \x01(\x02\x12\r\n\x05label\x18\x05 \x01(\t\x12\x10\n\x08\x63lass_id\x18\x06 \x01(\x05\x12\x12\n\nconfidence\x18\x07 \x01(\x02\"\xa8\x01\n\rInferResponse\x12\x12\n\nmodel_name\x18\x01 \x01(\t\x12(\n\tlist_bbox\x18\x02 \x03(\x0b\x32\x15.model.inference.BBox\x12\x18\n\x10img_segmentation\x18\x03 \x01(\x0c\x12\x30\n\x0b\x64\x65\x66\x65\x63t_list\x18\x04 \x03(\x0b\x32\x1b.model.inference.DefectInfo\x12\r\n\x05\x65rror\x18\x05 \x01(\t2Z\n\x10InferenceMethods\x12\x46\n\x05Infer\x12\x1d.model.inference.InferRequest\x1a\x1e.model.inference.InferResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,15 +32,15 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'protos.inference_pb2', _glo
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_INFERREQUEST']._serialized_start=43
-  _globals['_INFERREQUEST']._serialized_end=159
-  _globals['_RGB']._serialized_start=161
-  _globals['_RGB']._serialized_end=199
-  _globals['_DEFECTINFO']._serialized_start=201
-  _globals['_DEFECTINFO']._serialized_end=327
-  _globals['_BBOX']._serialized_start=329
-  _globals['_BBOX']._serialized_end=432
-  _globals['_INFERRESPONSE']._serialized_start=435
-  _globals['_INFERRESPONSE']._serialized_end=629
-  _globals['_INFERENCEMETHODS']._serialized_start=631
-  _globals['_INFERENCEMETHODS']._serialized_end=721
+  _globals['_INFERREQUEST']._serialized_end=108
+  _globals['_RGB']._serialized_start=110
+  _globals['_RGB']._serialized_end=148
+  _globals['_DEFECTINFO']._serialized_start=150
+  _globals['_DEFECTINFO']._serialized_end=276
+  _globals['_BBOX']._serialized_start=278
+  _globals['_BBOX']._serialized_end=381
+  _globals['_INFERRESPONSE']._serialized_start=384
+  _globals['_INFERRESPONSE']._serialized_end=552
+  _globals['_INFERENCEMETHODS']._serialized_start=554
+  _globals['_INFERENCEMETHODS']._serialized_end=644
 # @@protoc_insertion_point(module_scope)
